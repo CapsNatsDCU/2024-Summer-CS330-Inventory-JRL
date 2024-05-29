@@ -91,10 +91,9 @@ public class Inventory
      *
      * @return true if the current size is equal to capacity
      */
-    public boolean isFull()
+    public boolean isFull()////////////////////////////////////////////////////////////////
     {
-        // Replace the next line
-        return false;
+        return this.slots.currentSize == DEFAULT_SIZE;
     }
 
     /**
@@ -115,9 +114,15 @@ public class Inventory
      *
      * @return matching stack if one was found and `null` otherwise
      */
-    public ItemStack findMatchingItemStack(ItemStack key)
+    public ItemStack findMatchingItemStack(ItemStack key) ///////////////////////////////////
     {
         // Add the necessary sequential search loop
+        LinkedListNode<ItemStack> it = this.slots.head;
+        for (int i = 0; i < it.currentSize; i++){
+            if (it.head == key){
+                return it.head;
+            }
+        }
 
         return null;
     }

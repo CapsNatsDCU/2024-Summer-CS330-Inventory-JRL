@@ -118,10 +118,8 @@ public class Inventory
     {
         // Add the necessary sequential search loop
         LinkedListNode<ItemStack> it = this.slots.head;
-        for (int i = 0; i < it.currentSize; i++){
-            if (it.head == key){
-                return it.head;
-            }
+        for (int i = 0; i < 9; i++){
+
         }
 
         return null;
@@ -132,12 +130,14 @@ public class Inventory
      *
      * @param toAdd data that we want to store in a Node and add to the list
      */
-    public void addItemStackNoCheck(ItemStack toAdd)
+    public void addItemStackNoCheck(ItemStack toAdd)//////////////////////////////////////////
     {
         LinkedList.Node<ItemStack> newNode = new LinkedList.Node<>(toAdd);
 
         // Use the appendNode/add logic from Review 1 as your starting point
         // Once we reach this function... we know that `toAdd` must be stored
+
+        slots.add(newNode);
     }
 
     /**

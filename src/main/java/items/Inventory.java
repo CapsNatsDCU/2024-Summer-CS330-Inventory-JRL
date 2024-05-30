@@ -117,11 +117,13 @@ public class Inventory
     public ItemStack findMatchingItemStack(ItemStack key) ///////////////////////////////////
     {
         // Add the necessary sequential search loop
-        LinkedListNode<ItemStack> it = this.slots.head;
-        for (int i = 0; i < 9; i++){
-
+        LinkedList.Node<ItemStack> it = this.slots.head;
+        while (it != null){
+            if (it.data.equals(key)){
+                return it.data;
+            }
+            it = it.next;
         }
-
         return null;
     }
 
@@ -132,12 +134,12 @@ public class Inventory
      */
     public void addItemStackNoCheck(ItemStack toAdd)//////////////////////////////////////////
     {
-        LinkedList.Node<ItemStack> newNode = new LinkedList.Node<>(toAdd);
+        ItemStack newNode = new LinkedList.Node<>(toAdd);
 
         // Use the appendNode/add logic from Review 1 as your starting point
         // Once we reach this function... we know that `toAdd` must be stored
 
-        slots.add(newNode);
+        slots.addItems(newNode);
     }
 
     /**

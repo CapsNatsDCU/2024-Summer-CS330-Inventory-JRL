@@ -25,7 +25,7 @@ public class Inventory
      * @param lhs stack whose size will be increased
      * @param rhs stack whose size we need to examine
      */
-    public static void mergeStacks(ItemStack lhs, ItemStack rhs)
+    public static void mergeStacks(ItemStack lhs, ItemStack rhs)///////////////////////////
     {
         // lhs needs to have items added to it.
         // rhs's size is needed
@@ -117,13 +117,21 @@ public class Inventory
     public ItemStack findMatchingItemStack(ItemStack key) ///////////////////////////////////
     {
         // Add the necessary sequential search loop
-        LinkedList.Node<ItemStack> it = this.slots.head;
-        while (it != null){
-            if (it.data.equals(key)){
-                return it.data;
+        LinkedList.Node<ItemStack> it;
+        //if it does work take it out of the try/catch block
+        try {
+            it = slots.head;
+            while (it != null){
+                if (it.data.equals(key)){
+                    return it.data;
+                }
+                it = it.next;
             }
-            it = it.next;
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("DEBUG: findMatchingItemStack() did not work");
         }
+        
         return null;
     }
 
@@ -134,12 +142,11 @@ public class Inventory
      */
     public void addItemStackNoCheck(ItemStack toAdd)//////////////////////////////////////////
     {
-        ItemStack newNode = new LinkedList.Node<>(toAdd);
-
         // Use the appendNode/add logic from Review 1 as your starting point
         // Once we reach this function... we know that `toAdd` must be stored
 
-        slots.addItems(newNode);
+        LinkedList.Node<ItemStack> newNode = new LinkedList.Node<>(toAdd);
+        slots.addLast(newNode);
     }
 
     /**

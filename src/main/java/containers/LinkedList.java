@@ -1,5 +1,8 @@
 package containers;
 
+import org.w3c.dom.Node;
+
+import items.ItemStack;
 
 public class LinkedList<T>
 {
@@ -18,6 +21,18 @@ public class LinkedList<T>
         {
             this.data = d;
             this.next = null;
+        }
+    }
+
+    /**
+     * this is the method to add a node
+     */
+    public void add(T newData){
+        Node<T> nova = new Node<T>(newData);
+        if (this.currentSize > 0){
+            tail = nova;
+        } else {
+            head = nova;
         }
     }
 

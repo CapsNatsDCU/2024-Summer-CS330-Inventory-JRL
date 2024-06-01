@@ -146,7 +146,7 @@ public class Inventory
         // Once we reach this function... we know that `toAdd` must be stored
 
         LinkedList.Node<ItemStack> newNode = new LinkedList.Node<>(toAdd);
-        slots.addLast(newNode);
+        slots.add(newNode);
     }
 
     /**

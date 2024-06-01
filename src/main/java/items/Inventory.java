@@ -1,6 +1,7 @@
 package items;
 
 import containers.LinkedList;
+import containers.LinkedList.Node;
 
 
 /**
@@ -145,8 +146,7 @@ public class Inventory
         // Use the appendNode/add logic from Review 1 as your starting point
         // Once we reach this function... we know that `toAdd` must be stored
 
-        LinkedList.Node<ItemStack> newNode = new LinkedList.Node<>(toAdd);
-        slots.add(newNode);
+        slots.addItemStack(toAdd);
     }
 
     /**

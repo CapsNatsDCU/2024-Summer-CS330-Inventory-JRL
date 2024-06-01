@@ -2,6 +2,7 @@ package containers;
 
 import org.w3c.dom.Node;
 
+import items.Item;
 import items.ItemStack;
 
 public class LinkedList<T>
@@ -27,14 +28,30 @@ public class LinkedList<T>
     /**
      * this is the method to add a node
      */
-    public void add(T newData){
-        Node<T> nova = new Node<T>(newData);
+    public void addItemStack(ItemStack newData){
+        Node<ItemStack> nova = new Node<ItemStack>(newData);
         if (this.currentSize > 0){
+            tail.next = nova;
             tail = nova;
         } else {
             head = nova;
         }
+        currentSize++;
     }
+
+    /**
+     * public void addItemStack(ItemStack newData) {
+    Node<ItemStack> newNode = new Node<>(newData);
+    if (isEmpty()) {  // Check if the list is empty
+        head = tail = newNode;
+    } else {
+        tail.next = newNode;  // Update next pointer of current tail
+        tail = newNode;        // Update tail to point to the new node
+    }
+    currentSize++;
+}
+
+     */
 
     /**
      * This is a pointer to the head (first)

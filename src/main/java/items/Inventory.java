@@ -26,11 +26,14 @@ public class Inventory
      * @param lhs stack whose size will be increased
      * @param rhs stack whose size we need to examine
      */
-    public static void mergeStacks(ItemStack lhs, ItemStack rhs)///////////////////////////
+    public static void mergeStacks(ItemStack lhs, ItemStack rhs)/////////////////////////// DONE
     {
         // lhs needs to have items added to it.
         // rhs's size is needed
         // lhs.????(rhs.????)
+        if (lhs.getItem() == rhs.getItem()){
+            lhs.addItems(rhs.size());
+        }
     }
 
     /**
@@ -92,7 +95,7 @@ public class Inventory
      *
      * @return true if the current size is equal to capacity
      */
-    public boolean isFull()////////////////////////////////////////////////////////////////
+    public boolean isFull()//////////////////////////////////////////////////////////////// DONE
     {
         return this.slots.currentSize == DEFAULT_SIZE;
     }
@@ -115,22 +118,17 @@ public class Inventory
      *
      * @return matching stack if one was found and `null` otherwise
      */
-    public ItemStack findMatchingItemStack(ItemStack key) ///////////////////////////////////
+    public ItemStack findMatchingItemStack(ItemStack key) /////////////////////////////////// DONEish
     {
         // Add the necessary sequential search loop
         LinkedList.Node<ItemStack> it;
         //if it does work take it out of the try/catch block
-        try {
-            it = slots.head;
-            while (it != null){
-                if (it.data.equals(key)){
-                    return it.data;
-                }
-                it = it.next;
+        it = slots.head;
+        while (it != null){
+            if (it.data.equals(key)){
+                return it.data;
             }
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println("DEBUG: findMatchingItemStack() did not work");
+            it = it.next;
         }
         
         return null;
@@ -141,7 +139,7 @@ public class Inventory
      *
      * @param toAdd data that we want to store in a Node and add to the list
      */
-    public void addItemStackNoCheck(ItemStack toAdd)//////////////////////////////////////////
+    public void addItemStackNoCheck(ItemStack toAdd)////////////////////////////////////////// DONE
     {
         // Use the appendNode/add logic from Review 1 as your starting point
         // Once we reach this function... we know that `toAdd` must be stored

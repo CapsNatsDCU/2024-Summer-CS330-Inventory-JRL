@@ -12,6 +12,7 @@ import containers.LinkedList.Node;
  * stored. Individual slots may contain any number of the same
  * Item--if the Item is stackable.
  */
+@SuppressWarnings("unused")
 public class Inventory
 {
     /**
@@ -97,7 +98,7 @@ public class Inventory
      */
     public boolean isFull()//////////////////////////////////////////////////////////////// DONE
     {
-        return this.slots.currentSize == DEFAULT_SIZE;
+        return this.slots.currentSize == capacity;
     }
 
     /**
@@ -121,16 +122,13 @@ public class Inventory
     public ItemStack findMatchingItemStack(ItemStack key) /////////////////////////////////// DONEish
     {
         // Add the necessary sequential search loop
-        LinkedList.Node<ItemStack> it;
-        //if it does work take it out of the try/catch block
-        it = slots.head;
-        while (it != null){
-            if (it.data.equals(key)){
-                return it.data;
+        LinkedList<ItemStack> it = this.slots;
+        while (it.currentSize > this.slots.currentSize){
+            if (it.head.data.equals(key)){
+                return key;
             }
-            it = it.next;
+            it.removeHead();
         }
-        
         return null;
     }
 
@@ -144,7 +142,7 @@ public class Inventory
         // Use the appendNode/add logic from Review 1 as your starting point
         // Once we reach this function... we know that `toAdd` must be stored
 
-        slots.addItemStack(toAdd);
+        slots.addFirst(toAdd);
     }
 
     /**

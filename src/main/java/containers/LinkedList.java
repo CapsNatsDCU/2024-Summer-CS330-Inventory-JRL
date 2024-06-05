@@ -5,6 +5,7 @@ import org.w3c.dom.Node;
 import items.Item;
 import items.ItemStack;
 
+@SuppressWarnings("unused")
 public class LinkedList<T>
 {
     public static class Node<T>
@@ -26,32 +27,48 @@ public class LinkedList<T>
     }
 
     /**
-     * this is the method to add a node
+     * this method removes the head
+     * cioped from AI
      */
-    public void addItemStack(ItemStack newData){
-        Node<ItemStack> nova = new Node<ItemStack>(newData);
-        if (this.currentSize > 0){
-            tail.next = nova;
-            tail = nova;
-        } else {
-            head = nova;
+
+     public Node removeHead() {
+        // Handle the empty list case
+        if (head == null) {
+          return null;
         }
-        currentSize++;
-    }
+      
+        // Store the current head for return
+        Node removedHead = head;
+      
+        // Update head to point to the next node
+        head = head.next;
+      
+        // Free the memory of the removed node (optional)
+        removedHead.next = null;
+      
+        return removedHead;
+      }
+
 
     /**
-     * public void addItemStack(ItemStack newData) {
-    Node<ItemStack> newNode = new Node<>(newData);
-    if (isEmpty()) {  // Check if the list is empty
-        head = tail = newNode;
-    } else {
-        tail.next = newNode;  // Update next pointer of current tail
-        tail = newNode;        // Update tail to point to the new node
-    }
-    currentSize++;
-}
-
+     * 
+     * @param data the itemstack to add
      */
+
+    public void addFirst(T data) {
+        Node<T> newNode = new Node<>(data);
+        // If the list is empty, set both head and tail to the new node
+        if (currentSize == 0) {
+          head = tail = newNode;
+        } else {
+          // Set the new node's next pointer to the current head
+          newNode.next = head;
+          // Update the head to point to the new node
+          head = newNode;
+        }
+        currentSize++;
+      }
+      
 
     /**
      * This is a pointer to the head (first)

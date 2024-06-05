@@ -32,9 +32,7 @@ public class Inventory
         // lhs needs to have items added to it.
         // rhs's size is needed
         // lhs.????(rhs.????)
-        if (lhs.getItem() == rhs.getItem()){
-            lhs.addItems(rhs.size());
-        }
+        lhs.addItems(rhs.size());
     }
 
     /**
@@ -119,7 +117,7 @@ public class Inventory
      *
      * @return matching stack if one was found and `null` otherwise
      */
-    public ItemStack findMatchingItemStack(ItemStack key) /////////////////////////////////// DONEish
+    public ItemStack findMatchingItemStack(ItemStack key) /////////////////////////////////// DONE
     {
         // Add the necessary sequential search loop
         LinkedList<ItemStack> it = this.slots;

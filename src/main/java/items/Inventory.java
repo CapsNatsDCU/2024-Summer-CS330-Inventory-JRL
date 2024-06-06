@@ -125,7 +125,7 @@ public class Inventory
             if (it.head.data.equals(key)){
                 return key;
             }
-            it.removeHead();
+            removeHead(it);
         }
         return null;
     }
@@ -140,7 +140,7 @@ public class Inventory
         // Use the appendNode/add logic from Review 1 as your starting point
         // Once we reach this function... we know that `toAdd` must be stored
 
-        slots.addFirst(toAdd);
+        addLast(toAdd);
     }
 
     /**
@@ -196,4 +196,38 @@ public class Inventory
 
         return strBld.toString();
     }
+
+    /**
+     * this method removes the head
+     * 
+     * @param it is the liked list to use
+     */
+
+     public void removeHead(LinkedList<ItemStack> it) {
+        if (it.head == it.tail) {
+          it.head = it.tail = null;
+        } else {
+          it.head = it.head.next;
+        }
+        it.currentSize--;
+    }
+      
+
+
+    /**
+    * 
+    * @param data the itemstack to add
+    */
+
+    public void addLast(ItemStack toAdd) {
+        Node<ItemStack> lemon = new Node<ItemStack>(toAdd);
+        if (isEmpty()) {
+            slots.head = slots.tail = lemon;
+        } else {
+            slots.tail.next = lemon;
+            slots.tail = lemon;
+        }
+    }      
 }
+
+

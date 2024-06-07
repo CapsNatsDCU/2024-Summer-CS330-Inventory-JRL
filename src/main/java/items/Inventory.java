@@ -12,7 +12,7 @@ import containers.LinkedList.Node;
  * stored. Individual slots may contain any number of the same
  * Item--if the Item is stackable.
  */
-@SuppressWarnings("unused")
+
 public class Inventory
 {
     /**
@@ -123,10 +123,13 @@ public class Inventory
         LinkedList<ItemStack> it = this.slots;
         while (it.currentSize > this.slots.currentSize){
             if (it.head.data.equals(key)){
+                //System.out.println("match");  
                 return key;
+            } else {
+                removeHead(it);
             }
-            removeHead(it);
         }
+        //System.out.println("no match");
         return null;
     }
 
@@ -154,7 +157,6 @@ public class Inventory
     {
         ItemStack match = this.findMatchingItemStack(stack);
 
-        // if a match was found
         if (match != null) {
             // If the Item is stackable, add it to the ItemStack
             if (match.permitsStacking()) {
@@ -221,12 +223,15 @@ public class Inventory
 
     public void addLast(ItemStack toAdd) {
         Node<ItemStack> lemon = new Node<ItemStack>(toAdd);
+        //System.out.println(lemon.toString());
         if (isEmpty()) {
             slots.head = slots.tail = lemon;
         } else {
             slots.tail.next = lemon;
             slots.tail = lemon;
         }
+        //System.out.println(slots.tail.toString());
+        slots.currentSize++;
     }      
 }
 
